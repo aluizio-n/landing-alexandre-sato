@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import BeforeAfter from "./components/BeforeAfter";
 import Locations from "./components/Locations";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -14,6 +15,7 @@ export default function Home() {
 
       <main>
         <Services />
+        <BeforeAfter />
         <Locations />
       </main>
 

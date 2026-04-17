@@ -2,17 +2,25 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageCircle, ChevronDown, Shield, Award, Clock } from "lucide-react";
+import { MessageCircle, ChevronDown, Shield, Award, Clock, Menu, X } from "lucide-react";
 import { useWhatsApp } from "./WhatsAppModal";
+import { useState } from "react";
+
+const navLinks = [
+  { label: "Serviços", href: "#servicos" },
+  { label: "Resultados", href: "#resultados" },
+  { label: "Unidades", href: "#unidades" },
+];
 
 const stats = [
   { icon: Award, label: "Anos de Experiência", value: "15+" },
   { icon: Shield, label: "Clientes Atendidos", value: "10.000+" },
-  { icon: Clock, label: "Unidades em Manaus", value: "3" },
+  { icon: Clock, label: "Unidades em Manaus", value: "4" },
 ];
 
 export default function Hero() {
   const { openModal } = useWhatsApp();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <section
@@ -35,26 +43,23 @@ export default function Hero() {
         className="relative z-20 flex items-center justify-between px-6 py-5 md:px-12"
       >
         <Image
-          src="/logo.jpg"
-          alt="Alexandre Sato"
-          width={56}
-          height={56}
+          src="/alexandre-sato-logo.jpg"
+          alt="Alexandre Sato - Funilaria e Pintura Express"
+          width={160}
+          height={60}
           priority
-          className="rounded-lg"
+          className="h-10 w-auto object-contain md:h-12"
         />
         <div className="flex items-center gap-4">
-          <a
-            href="#servicos"
-            className="hidden text-sm text-gray-400 transition-colors hover:text-white md:block"
-          >
-            Serviços
-          </a>
-          <a
-            href="#unidades"
-            className="hidden text-sm text-gray-400 transition-colors hover:text-white md:block"
-          >
-            Unidades
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hidden text-sm text-gray-400 transition-colors hover:text-white md:block"
+            >
+              {link.label}
+            </a>
+          ))}
           <button
             onClick={openModal}
             className="flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
@@ -62,25 +67,76 @@ export default function Hero() {
             <MessageCircle className="h-4 w-4" />
             <span className="hidden sm:inline">Orçamento</span>
           </button>
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white transition-colors hover:border-white/20 md:hidden"
+            aria-label="Abrir menu"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </motion.nav>
+
+      {/* Fullscreen mobile menu */}
+      <motion.div
+        initial={false}
+        animate={menuOpen ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed inset-0 z-40 flex flex-col bg-black/70 backdrop-blur-2xl md:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"
+          }`}
+      >
+        <div className="flex items-center justify-between px-6 py-5">
+          <Image
+            src="/alexandre-sato-logo.jpg"
+            alt="Alexandre Sato"
+            width={160}
+            height={60}
+            className="h-10 w-auto object-contain"
+          />
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white"
+            aria-label="Fechar menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav className="flex flex-1 flex-col justify-center px-10">
+          {navLinks.map((link, i) => (
+            <motion.div key={link.href} initial={false} animate={menuOpen ? { opacity: 1, y: 0, transition: { delay: 0.1 + i * 0.06 } } : { opacity: 0, y: 16 }}>
+              {i > 0 && <div className="h-px bg-white/8" />}
+              <a
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block py-5 text-center text-2xl font-light tracking-wide text-gray-300 transition-colors hover:text-white"
+                style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+              >
+                {link.label}
+              </a>
+            </motion.div>
+          ))}
+          <motion.div initial={false} animate={menuOpen ? { opacity: 1, y: 0, transition: { delay: 0.1 + navLinks.length * 0.06 } } : { opacity: 0, y: 16 }}>
+            <div className="h-px bg-white/8" />
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                openModal();
+              }}
+              className="block w-full py-5 text-center text-2xl font-light tracking-wide text-gray-300 transition-colors hover:text-white"
+              style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+            >
+              Orçamento
+            </button>
+          </motion.div>
+        </nav>
+      </motion.div>
 
       {/* Main content */}
       <div className="relative z-10 flex flex-1 items-center px-6 md:px-12">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2">
           {/* Left — Text */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/5 px-4 py-1.5"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-accent">
-                Referência em Manaus
-              </span>
-            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, x: -30 }}
@@ -89,20 +145,9 @@ export default function Hero() {
               className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl"
             >
               Especialistas em{" "}
-              <span className="relative inline-block text-accent">
-                Martelinho de Ouro
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-accent/40" />
-              </span>
-              ,{" "}
-              <span className="relative inline-block text-accent">
-                Estética Automotiva
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-accent/40" />
-              </span>{" "}
-              e{" "}
-              <span className="relative inline-block text-accent">
-                Funilaria e Pintura
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-accent/40" />
-              </span>{" "}
+              <span className="text-accent">Martelinho de Ouro</span>,{" "}
+              <span className="text-accent">Estética Automotiva</span> e{" "}
+              <span className="text-accent">Funilaria e Pintura</span>{" "}
               em Manaus
             </motion.h1>
 
@@ -127,7 +172,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-bold text-white transition-all hover:bg-accent-light hover:shadow-lg hover:shadow-accent/20"
               >
                 <MessageCircle className="h-5 w-5" />
-                Faça seu Orçamento
+                Faça seu orçamento
               </button>
               <a
                 href="#servicos"
@@ -138,7 +183,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — Logo showcase */}
+          {/* Right — Alexandre's photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -146,17 +191,24 @@ export default function Hero() {
             className="relative hidden justify-center lg:flex"
           >
             <div className="relative">
-              {/* Glow behind logo */}
+              {/* Glow behind image */}
               <div className="absolute -inset-8 rounded-3xl bg-accent/5 blur-3xl" />
               <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-accent/10" />
               <Image
-                src="/logo.jpg"
-                alt="Alexandre Sato - Funilaria e Pintura Premium em Manaus"
-                width={420}
-                height={420}
+                src="/alexandre.jpg"
+                alt="Alexandre Sato - Especialista em Funilaria, Pintura e Estética Automotiva em Manaus"
+                width={480}
+                height={580}
                 priority
-                className="relative rounded-3xl shadow-2xl shadow-black/60"
+                className="relative rounded-3xl object-cover shadow-2xl shadow-black/60"
               />
+              {/* Trust badge overlay */}
+              <div className="absolute -bottom-4 -right-4 rounded-2xl border border-white/10 bg-graphite-light/90 px-5 py-3 shadow-xl backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                  Confiança & Qualidade
+                </p>
+                <p className="text-lg font-bold text-white">15+ anos</p>
+              </div>
             </div>
           </motion.div>
         </div>

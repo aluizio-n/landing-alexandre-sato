@@ -34,11 +34,11 @@ export default function Footer() {
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start">
           <Image
-            src="/logo.jpg"
-            alt="Alexandre Sato"
-            width={100}
-            height={100}
-            className="mb-3 rounded-xl"
+            src="/alexandre-sato.jpg"
+            alt="Alexandre Sato - Funilaria e Pintura Express"
+            width={200}
+            height={75}
+            className="mb-3 h-12 w-auto object-contain"
           />
           <p className="text-center text-sm text-gray-400 md:text-left">
             Referência em Martelinho de Ouro, Estética Automotiva e Funilaria e
@@ -55,6 +55,11 @@ export default function Footer() {
             <li>
               <a href="#servicos" className="transition-colors hover:text-white">
                 Serviços
+              </a>
+            </li>
+            <li>
+              <a href="#resultados" className="transition-colors hover:text-white">
+                Resultados
               </a>
             </li>
             <li>
