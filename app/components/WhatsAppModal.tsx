@@ -13,18 +13,23 @@ import { X, MessageCircle, MapPin } from "lucide-react";
 const units = [
   {
     name: "Unidade Major Gabriel",
-    address: "Av. Major Gabriel, Centro",
-    phone: "5592000000001",
+    address: "R. Maj. Gabriel, 1192 — Centro",
+    phone: "559232346177",
   },
   {
-    name: "Unidade Paraíba",
-    address: "Av. Paraíba",
-    phone: "5592000000002",
+    name: "Unidade Umberto Calderaro",
+    address: "Av. Umberto Calderaro, 250 — São Francisco",
+    phone: "559238774441",
   },
   {
-    name: "Unidade Ephigênio Salles",
-    address: "Av. Ephigênio Salles",
-    phone: "5592000000003",
+    name: "Unidade V8",
+    address: "Av. Efigênio Salles, 276 — Aleixo",
+    phone: "5592993471926",
+  },
+  {
+    name: "Unidade Max Teixeira",
+    address: "Av. Max Teixeira, 200 — Col. Santo Antônio",
+    phone: "559232335470",
   },
 ];
 
@@ -128,7 +133,7 @@ export function WhatsAppProvider({ children }: { children: ReactNode }) {
                 {/* Footer hint */}
                 <div className="border-t border-white/5 px-6 py-4">
                   <p className="text-center text-xs text-gray-600">
-                    Atendimento de Seg. a Sáb. — 8h às 18h
+                    Seg a Sex — 8h às 17h / Sáb — 8h às 12h
                   </p>
                 </div>
               </div>

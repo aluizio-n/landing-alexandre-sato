@@ -52,6 +52,20 @@ const jsonLd = {
     "Especialistas em Martelinho de Ouro, Estética Automotiva e Funilaria e Pintura em Manaus.",
   url: "https://alexandresato.com.br",
   telephone: "+5592000000000",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "12:00",
+    },
+  ],
   areaServed: {
     "@type": "City",
     name: "Manaus",

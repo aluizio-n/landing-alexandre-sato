@@ -23,7 +23,7 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const INSTAGRAM_URL = "https://instagram.com/alexandresato"; // Substituir pelo perfil real
+const INSTAGRAM_URL = "https://instagram.com/alexandresatomanaus"; // Substituir pelo perfil real
 
 export default function Footer() {
   const { openModal } = useWhatsApp();
@@ -78,8 +78,15 @@ export default function Footer() {
           </ul>
         </nav>
 
-        {/* Social */}
+        {/* Hours + Social */}
         <div>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">
+            Horário de Funcionamento
+          </p>
+          <ul className="mb-6 space-y-1 text-sm text-gray-400">
+            <li>Seg a Sex — 8h às 17h</li>
+            <li>Sáb — 8h às 12h</li>
+          </ul>
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-accent">
             Redes Sociais
           </p>

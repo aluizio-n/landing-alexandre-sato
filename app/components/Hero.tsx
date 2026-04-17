@@ -61,13 +61,6 @@ export default function Hero() {
             </a>
           ))}
           <button
-            onClick={openModal}
-            className="flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">Orçamento</span>
-          </button>
-          <button
             onClick={() => setMenuOpen((v) => !v)}
             className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-white transition-colors hover:border-white/20 md:hidden"
             aria-label="Abrir menu"
