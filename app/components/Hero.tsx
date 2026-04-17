@@ -110,7 +110,6 @@ export default function Hero() {
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="block py-5 text-center text-2xl font-light tracking-wide text-gray-300 transition-colors hover:text-white"
-                style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
               >
                 {link.label}
               </a>

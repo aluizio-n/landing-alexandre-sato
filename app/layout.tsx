@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-playfair",
+});
 
 export const metadata: Metadata = {
   title:
@@ -128,7 +135,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={playfair.variable}>
       <head>
         <script
           type="application/ld+json"
