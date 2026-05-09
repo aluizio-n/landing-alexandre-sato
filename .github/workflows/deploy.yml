@@ -3,6 +3,7 @@ name: Deploy Landing Page
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -30,3 +31,4 @@ jobs:
           target: ${{ secrets.LANDING_DEPLOY_PATH }}
           strip_components: 1
           rm: true
+
