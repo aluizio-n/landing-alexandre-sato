@@ -1,0 +1,6 @@
+services:
+  landing:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8081:80"
