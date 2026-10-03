@@ -2,5 +2,7 @@ services:
   landing:
     build: .
     restart: unless-stopped
+    # Só loopback: o nginx do host faz o proxy e o TLS (deploy/alexandresato.com.br.conf).
+    # 8080 (hackway), 8081 (evolution) e 8001 (painel) já estão em uso na VPS.
     ports:
-      - "8081:80"
+      - "127.0.0.1:8082:80"
